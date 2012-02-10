@@ -1,6 +1,6 @@
 == Geograph Agent Farm Domain Model (Ogm - Fenix - Infinispan)
 
-This is the Cloud-TM domain model of "Geograp Agent Farm"[http://github.com/algorithmica/geograph-agent-farm].
+This is the Cloud-TM domain model of [Geograp Agent Farm](http://github.com/algorithmica/geograph-agent-farm).
  
 == Getting started
 
