@@ -6,6 +6,23 @@ import pt.ist.fenixframework.ValueTypeSerializationGenerator.*;
 
 public class ValueTypeSerializationGenerator {
     
+    // VT: Date
+    public static class Serialized$Date implements java.io.Serializable {
+        private static final long serialVersionUID = 1L;
+        private java.lang.String toString;
+        private  Serialized$Date(java.util.Date obj) {
+            this.toString = (java.lang.String)obj.toString();
+            
+        }
+        
+    }
+    public static Serialized$Date serialize$Date(java.util.Date obj) {
+        return (obj == null) ? null : new Serialized$Date(obj);
+    }
+    public static java.util.Date deSerialize$Date(Serialized$Date obj) {
+        return (obj == null) ? null : (java.util.Date)new java.util.Date(obj.toString);
+    }
+    
     // VT: Decimal
     public static class Serialized$Decimal implements java.io.Serializable {
         private static final long serialVersionUID = 1L;

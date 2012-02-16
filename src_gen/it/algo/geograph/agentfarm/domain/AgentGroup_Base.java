@@ -94,6 +94,15 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
         ((DO_State)this.get$obj$state(true)).status = status;
     }
     
+    public java.util.Date getLast_execution() {
+        pt.ist.fenixframework.pstm.DataAccessPatterns.noteGetAccess(this, "last_execution");
+        return ((DO_State)this.get$obj$state(false)).last_execution;
+    }
+    
+    public void setLast_execution(java.util.Date last_execution) {
+        ((DO_State)this.get$obj$state(true)).last_execution = last_execution;
+    }
+    
     public it.algo.geograph.agentfarm.domain.Root getRoot() {
         pt.ist.fenixframework.pstm.DataAccessPatterns.noteGetAccess(this, "root");
         return ((DO_State)this.get$obj$state(false)).root;
@@ -168,6 +177,7 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
         private java.lang.Integer delay;
         private java.lang.String agents_type;
         private java.lang.String status;
+        private java.util.Date last_execution;
         private it.algo.geograph.agentfarm.domain.Root root;
         protected void copyTo(pt.ist.fenixframework.pstm.OneBoxDomainObject.DO_State  newState) {
             super.copyTo(newState);
@@ -176,6 +186,7 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
             newCasted.delay = this.delay;
             newCasted.agents_type = this.agents_type;
             newCasted.status = this.status;
+            newCasted.last_execution = this.last_execution;
             newCasted.root = this.root;
             
         }
@@ -192,6 +203,7 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
             private java.lang.Integer delay;
             private java.lang.String agents_type;
             private java.lang.String status;
+            private Serialized$Date last_execution;
             private it.algo.geograph.agentfarm.domain.Root root;
             
             protected  SerializedForm(DO_State obj) {
@@ -200,6 +212,7 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
                 this.delay = obj.delay;
                 this.agents_type = obj.agents_type;
                 this.status = obj.status;
+                this.last_execution = pt.ist.fenixframework.ValueTypeSerializationGenerator.serialize$Date(obj.last_execution);
                 this.root = obj.root;
                 
             }
@@ -217,6 +230,7 @@ public abstract class AgentGroup_Base extends pt.ist.fenixframework.pstm.OneBoxD
                 state.delay = this.delay;
                 state.agents_type = this.agents_type;
                 state.status = this.status;
+                state.last_execution = pt.ist.fenixframework.ValueTypeSerializationGenerator.deSerialize$Date(this.last_execution);
                 state.root = this.root;
                 
             }
