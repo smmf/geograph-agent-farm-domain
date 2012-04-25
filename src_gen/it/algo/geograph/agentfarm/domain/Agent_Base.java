@@ -86,12 +86,12 @@ public abstract class Agent_Base extends pt.ist.fenixframework.pstm.OneBoxDomain
         ((DO_State)this.get$obj$state(true)).status = status;
     }
     
-    public java.lang.Long getGeo_object() {
+    public java.lang.String getGeo_object() {
         pt.ist.fenixframework.pstm.DataAccessPatterns.noteGetAccess(this, "geo_object");
         return ((DO_State)this.get$obj$state(false)).geo_object;
     }
     
-    public void setGeo_object(java.lang.Long geo_object) {
+    public void setGeo_object(java.lang.String geo_object) {
         ((DO_State)this.get$obj$state(true)).geo_object = geo_object;
     }
     
@@ -203,7 +203,7 @@ public abstract class Agent_Base extends pt.ist.fenixframework.pstm.OneBoxDomain
     }
     protected static class DO_State extends pt.ist.fenixframework.pstm.OneBoxDomainObject.DO_State {
         private java.lang.String status;
-        private java.lang.Long geo_object;
+        private java.lang.String geo_object;
         private java.lang.String perception_status;
         private java.math.BigDecimal latitude;
         private java.math.BigDecimal longitude;
@@ -235,7 +235,7 @@ public abstract class Agent_Base extends pt.ist.fenixframework.pstm.OneBoxDomain
             private static final long serialVersionUID = 1L;
             
             private java.lang.String status;
-            private java.lang.Long geo_object;
+            private java.lang.String geo_object;
             private java.lang.String perception_status;
             private Serialized$Decimal latitude;
             private Serialized$Decimal longitude;
