@@ -4,3 +4,5 @@
 /*.log
 /src_gen
 /classes-devel
+/*.log
+/.idea

@@ -71,6 +71,7 @@
     nbproject/build-impl.xml file. 
 
     -->
+
    <target name="gen-jar" depends="compile">
      <jar destfile="${dist.jar}" basedir="classes"/>
    </target>
