@@ -24,7 +24,7 @@ FenixConfig = Java::PtIstFenixframework::Config
 FenixFramework = Java::PtIstFenixframework::FenixFramework
 
 # Load the domain models
-Route = Java::ItAlgoGeographAgentfarmDomain::Route
+MyRoute = Java::ItAlgoGeographAgentfarmDomain::Route
 Position = Java::ItAlgoGeographAgentfarmDomain::Position
 AgentGroup = Java::ItAlgoGeographAgentfarmDomain::AgentGroup
 Agent = Java::ItAlgoGeographAgentfarmDomain::Agent
@@ -142,7 +142,7 @@ class FenixLoader
   end
 end
 
-class Route
+class MyRoute
   class << self
 
     def create attrs = {}
@@ -164,14 +164,14 @@ end
 class Position
   class << self
     def create route, attrs = {}
-      manager = CloudTmTransactionManager.manager
+      #manager = CloudTmTransactionManager.manager
       #manager.withTransaction do
 
         instance = new
         attrs.each do |attr, value|
           instance.send("#{attr}=", value)
         end
-        manager.save instance
+        CloudTmTransactionManager.manager.save instance
         route.addPositions(instance)
 #      end
     end
@@ -242,12 +242,20 @@ FenixLoader.load({
     :conf => 'infinispanFile.xml'
   })
 
-Route.create(:name => 'test-route')
-
 _manager = CloudTmTransactionManager.manager
+
 _manager.withTransaction do
+  puts _manager.getRoot.getRoutes.size
+end
+
+MyRoute.create(:name => 'test-route')
+
+
+_manager.withTransaction do
+  puts _manager.getRoot.getRoutes.size
   _manager.getRoot.getRoutes.each do |route|
     next if route.name != 'test-route'
+    puts "Creating position"
     Position.create(route, {
         :latitude => java.math.BigDecimal.new("72.6426"),
         :longitude => java.math.BigDecimal.new("32.5425")
@@ -255,26 +263,27 @@ _manager.withTransaction do
   end
 end
 
-#_manager.withTransaction do
-#  _manager.getRoot.getRoutes.each do |route|
-#    next if route.name != 'test-route'
-#    route.getPositions.each do |position|
-#      puts "Destroying position #{position.oid} with lat: #{position.latitude} - lon: #{position.longitude}"
-#      position.destroy
-#    end
-#  end
-#end
+_manager.withTransaction do
+  _manager.getRoot.getRoutes.each do |route|
+    next if route.name != 'test-route'
+    puts route.inspect
+    route.getPositions.each do |position|
+      puts "Destroying position #{position.oid} with lat: #{position.latitude} - lon: #{position.longitude}"
+      position.destroy
+      #route.removePositions(position)
+    end
+  end
+end
 
-#_manager.withTransaction do
-#  _manager.getRoot.getRoutes.each do |route|
-#    next if route.name != 'test-route'
-#    if route.getPositions.any?
-#      raise "Position not removed correctly!"
-#    end
-#  end
-#end
-#
-#
+_manager.withTransaction do
+  _manager.getRoot.getRoutes.each do |route|
+    next if route.name != 'test-route'
+    if route.getPositions.any?
+      raise "Position not removed correctly!"
+    end
+  end
+end
+
 # inheritance test
 _manager.withTransaction do
   AgentGroup.create(:name => 'test-group')

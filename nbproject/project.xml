@@ -5,6 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>geograph-agent-farm-domain</name>
             <source-roots>
+                <root id="src.src-devel.dir"/>
                 <root id="src.dir"/>
                 <root id="src_gen.dir"/>
             </source-roots>
