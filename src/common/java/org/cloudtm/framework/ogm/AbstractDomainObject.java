@@ -1,7 +1,5 @@
 package org.cloudtm.framework.ogm;
 
-//import it.algo.geograph.TxSystem;
-//import it.algo.geograph.TxManager;
 
 public abstract class AbstractDomainObject {
     private long oid;

@@ -60,7 +60,7 @@ public class GeoObjectTest {
       }
     };
 
-    Init.initializeTxSystem(config, Framework.FENIX);
+    Init.initializeTxSystem(config, Framework.ISPN);
     txManager = TxSystem.getManager();
   }
 
@@ -98,10 +98,12 @@ public class GeoObjectTest {
       @Override
       public Position doIt() {
         Root root = (Root) txManager.getRoot();
-        Route route = root.getRoutes().get(0);
-        Position position = route.getPositions().get(0);
+        Route route = (Route) root.getRoutes().toArray()[0];
+        Position position = (Position) route.getPositions().toArray()[0];
         assertEquals(new BigDecimal("42.438878"), position.getLatitude());
         assertEquals(new BigDecimal("-71.119277"), position.getLongitude());
+        position.setAgent(null);
+        position.setRoute(null);
         return position;
       }
     });
