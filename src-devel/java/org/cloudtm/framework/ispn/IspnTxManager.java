@@ -141,11 +141,15 @@ public class IspnTxManager extends TxManager {
 
    @Override
    public <T> T withTransaction(final TransactionalCommand<T> command) {
+
       if (!USE_SHARED_IDENTITY_MAP) {
+         System.err.println("***********In SharedIdentityMap *****************");
+
          return withTransactionWithLocalIdentityMap(command);
       } else {
          T result = null;
          boolean txFinished = false;
+         System.err.println("*********** Not in  SharedIdentityMap *****************");
          while (!txFinished) {
             try {
                 boolean inTopLevelTransaction = false;
@@ -154,6 +158,7 @@ public class IspnTxManager extends TxManager {
                     transactionManager.begin();
                     inTopLevelTransaction = true;
                 }
+               System.err.println("cache name: " + domainCache.getName() + "\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
 
                // do some work
                result = command.doIt();
@@ -227,6 +232,9 @@ public class IspnTxManager extends TxManager {
 
             localIdMap = new LocalIdentityMap();
             perTxIdMap.set(localIdMap);
+            System.err.println("cache name: " + domainCache.getName());
+            System.err.println("\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
+
             // do some work
             result = command.doIt();
             if (inTopLevelTransaction) {
