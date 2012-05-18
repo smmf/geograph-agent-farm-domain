@@ -143,13 +143,13 @@ public class IspnTxManager extends TxManager {
    public <T> T withTransaction(final TransactionalCommand<T> command) {
 
       if (!USE_SHARED_IDENTITY_MAP) {
-         System.err.println("***********In SharedIdentityMap *****************");
+         //System.err.println("***********In SharedIdentityMap *****************");
 
          return withTransactionWithLocalIdentityMap(command);
       } else {
          T result = null;
          boolean txFinished = false;
-         System.err.println("*********** Not in  SharedIdentityMap *****************");
+         //System.err.println("*********** Not in  SharedIdentityMap *****************");
          while (!txFinished) {
             try {
                 boolean inTopLevelTransaction = false;
@@ -158,7 +158,7 @@ public class IspnTxManager extends TxManager {
                     transactionManager.begin();
                     inTopLevelTransaction = true;
                 }
-               System.err.println("cache name: " + domainCache.getName() + "\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
+               //System.err.println("cache name: " + domainCache.getName() + "\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
 
                // do some work
                result = command.doIt();
@@ -232,8 +232,8 @@ public class IspnTxManager extends TxManager {
 
             localIdMap = new LocalIdentityMap();
             perTxIdMap.set(localIdMap);
-            System.err.println("cache name: " + domainCache.getName());
-            System.err.println("\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
+            //System.err.println("cache name: " + domainCache.getName());
+            //System.err.println("\nCluster members: " + domainCache.getAdvancedCache().getRpcManager().getTransport().getMembers() + "\nCache size: " + domainCache.size());
 
             // do some work
             result = command.doIt();
@@ -256,11 +256,11 @@ public class IspnTxManager extends TxManager {
             //If a heuristic decision to roll back the transaction was made
             logExceptionAndRetry(hre);
          } catch (Exception e) { // any other exception 	 out
-            System.out.println("================================================================================");
-            System.out.println("class: " + e.getClass());
-            System.out.println("cause: " + e.getCause());
-            e.printStackTrace();
-            System.out.println("================================================================================");
+            //System.out.println("================================================================================");
+            //System.out.println("class: " + e.getClass());
+            //System.out.println("cause: " + e.getCause());
+            //e.printStackTrace();
+            //System.out.println("================================================================================");
             throw new RuntimeException(e);
          } finally {
             if (!txFinished) {
