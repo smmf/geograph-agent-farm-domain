@@ -244,8 +244,11 @@ FenixLoader.load({
 
 _manager = CloudTmTransactionManager.manager
 
+
+puts "manager #{_manager}"
 _manager.withTransaction do
-  puts _manager.getRoot.getRoutes.size
+  puts "in transaction!"
+  puts "Routes size #{_manager.getRoot.getRoutes.size}"
 end
 
 MyRoute.create(:name => 'test-route')
