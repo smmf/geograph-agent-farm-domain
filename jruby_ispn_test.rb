@@ -302,8 +302,8 @@ _manager.withTransaction do
     blogger_agent = group.getAgents.first
     puts blogger_agent.class
     puts blogger_agent.status
-    blogger_agent.alter_me(:perception_status => 'ok', :status => 'started')
-    puts blogger_agent.perception_status
+    blogger_agent.alter_me( :status => 'started')
+    #puts blogger_agent.perception_status
     puts blogger_agent.status
   end
 
