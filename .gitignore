@@ -6,3 +6,5 @@
 /classes-devel
 /*.log
 /.idea
+#Pedro: intellij idea files
+*.iml
