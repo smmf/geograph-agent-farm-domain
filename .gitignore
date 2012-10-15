@@ -8,3 +8,4 @@
 /.idea
 #Pedro: intellij idea files
 *.iml
+.DS_Store
