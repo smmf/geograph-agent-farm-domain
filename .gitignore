@@ -9,3 +9,5 @@
 #Pedro: intellij idea files
 *.iml
 .DS_Store
+/target
+/src/main/java
