@@ -1,5 +1,7 @@
 package it.algo.geograph.agentfarm.domain;
 
+// VALUE TYPES
+
 
 valueType java.math.BigDecimal as Decimal {
     externalizeWith {
@@ -13,12 +15,15 @@ valueType java.util.Date as Date {
     }
 }
 
-// This is the root domain object
+// DOMAIN OBJECTS
+
 class Root {
     boolean loaded;             // auxiliary slot for the bootstrap sequence
     Integer numAgentGroupIds;   // for the generation of agent group ids
     Integer numRouteIds;        // for the generation of route ids
 }
+
+
 
 class AgentGroup {
   String name;
@@ -48,6 +53,14 @@ class Position {
   Decimal longitude;
   Integer progressive;
 }
+
+
+// RELATIONS
+relation DomainRootHasRoot {
+    .pt.ist.fenixframework.DomainRoot playsRole;
+    Root playsRole app;
+}
+
 
 
 relation RootHasAgentGroups {
