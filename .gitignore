@@ -8,3 +8,9 @@
 /.idea
 #Pedro: intellij idea files
 *.iml
+.DS_Store
+/src/main/java
+/target
+/libs_path
+
+libs_paths
